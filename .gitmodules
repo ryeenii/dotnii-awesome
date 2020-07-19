@@ -1,0 +1,3 @@
+[submodule "awesome-switcher"]
+	path = awesome-switcher
+	url = http://github.com/berlam/awesome-switcher

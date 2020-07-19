@@ -1,0 +1,3 @@
+# ignore submodule files but keep the folders
+awesome-switcher/*
+!awesome-switcher/.gitkeep
