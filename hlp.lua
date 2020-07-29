@@ -18,13 +18,13 @@ function set_wallpaper(s)
     if type(btf.wallpaper) == "function" then
       wp = btf.wallpaper(s)
     end
-    gears.wallpaper.maximized(btf.wallpaper, s, true)
+    grs.wallpaper.maximized(btf.wallpaper, s, true)
   end
 end
 
 function startup_error(m, s)
   local nty = require('naughty')
-  nty.notification {
+  nty.notify {
 		 urgency = "critical",
 		 title   = "oh hey, an error happened"..(s and " during startup. you might want to have a look." or ". you might want to have a look."),
 		 message = m

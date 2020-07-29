@@ -24,45 +24,78 @@ local term = "urxvt"
 -- ||     /_/ ||
 -- \\_________//
 glkeys = grs.table.join (
-  awf.key({modKey, shift}, "Up",
-    awf.client.swap.bydirection("up"),
+  awf.key({modKey, "Shift"}, "Up",
+    function () awf.client.swap.bydirection("up") end,
     {description = "swap positions according to direction given [up]", group = "window"}
   ),
-  awf.key({modKey, shift}, "Left",
-    awf.client.swap.bydirection("left"),
+  awf.key({modKey, "Shift"}, "Left",
+    function() awf.client.swap.bydirection("left") end,
     {description = "swap positions according to direction given [left]", group = "window"}
   ),
-  awf.key({modKey, shift}, "Down",
-    awf.client.swap.bydirection("down"),
+  awf.key({modKey, "Shift"}, "Down",
+    function() awf.client.swap.bydirection("down") end,
     {description = "swap positions according to direction given [down]", group = "window"}
   ),
-  awf.key({modKey, shift}, "Right",
-    awf.client.swap.bydirection("right"),
+  awf.key({modKey, "Shift"}, "Right",
+    function() awf.client.swap.bydirection("right") end,
     {description = "swap positions according to direction given [right]", group = "window"}
   ),
   awf.key({altKey}, "Tab",
-    swt.switch( 1, "Mod1", "Alt_L", "Shift", "Tab"),
+    function () swt.switch( 1, "Mod1", "Alt_L", "Shift", "Tab") end,
     {description = "window switcher", group = "window"}
   ),
   awf.key({modKey}, "Return",
-    awf.spawn(term),
+    function() awf.spawn(term) end,
     {description = "open a terminal", group = "launcher"}
   ),
-  awf.key({modKey, shift}, "D",
-    awf.spawn(rofi),
+  awf.key({modKey, "Shift"}, "d",
+    function() awf.spawn("sh " .. vrs.rofi)  end,
     {description = "run prompt (xdg mode)", group = "launcher"}
   ),
-  awf.key({modKey}, "D",
-    awf.spawn(rofiRun),
+  awf.key({modKey}, "d",
+    function() awf.spawn("sh " .. vrs.rofiRun) end,
     {description = "run prompt", group = "launcher"}
   ),
-  awf.key({modKey, shift}, "E",
-    awf.spawn(rofiEmoji),
+  awf.key({modKey, "Shift"}, "e",
+    function() awf.spawn("sh " .. vrs.rofiEmoji) end,
     {description = "emoji prompt", group = "launcher"}
+  ),
+  awf.key({modKey, "Shift"}, "r",
+    awesome.restart,
+    {description = "reload awesome", group = "awesome"}
+  ),
+  awf.key({modKey}, "space",
+    function() awf.layout.inc(1) end,
+    {description = "change layout type", group = "layout"}
+  ),
+  awf.key({ctrl}, "Print",
+    function() awf.spawn("sh " .. vrs.scr) end,
+    {description = "take a screenshot", group = "launcher"}
   )
 )
+clkeys = grs.table.join(
+		awf.key({modKey, "Shift"}, "q",
+				function(c) c:kill() end,
+        {description = "close window", group = "client"}
+		),
+    awf.key({modKey}, "s",
+      awf.client.floating.toggle,
+      {description = "toggle client floating", group="client"}
+    ),
+    awf.key({modKey}, "m",
+      function(c)
+        c.maximized = not c.maximized
+        c:raise()
+      end
+    ),
+	awf.key({modKey}, "t", 
+		function (c) 
+				c.ontop = not c.ontop 
+		end
+		)
+) 
 for i = 1, 9 do
-  glkeys = grs.table.join(globalkeys,
+  glkeys = grs.table.join(glkeys,
                           awf.key({modKey}, "#" .. i + 9,
                             function()
                               local scr = awf.screen.focused()
@@ -87,16 +120,12 @@ for i = 1, 9 do
   )
 end
 clbuttons = grs.table.join(
-    awf.button({ }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-    end),
-    awf.button({ modKey }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-          if c.maximized == true then   c.maximized = false end
-        awf.mouse.client.move(c)
-    end),
-    awf.button({ modKey }, 3, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-        awf.mouse.client.resize(c)
-    end)
+    awf.button({ }, 1, function (c) if not c then return end client.focus = c; c:raise() end),
+    awf.button({ modKey }, 1, awf.mouse.client.move),
+    awf.button({ modKey }, 3, awf.mouse.client.resize)
 )
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
+root.keys(glkeys)
+root.buttons(clbuttons)

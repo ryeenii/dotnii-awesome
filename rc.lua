@@ -6,8 +6,8 @@
 -- \__/\__/\__/\__/    \\________________________________________//
 --    |  .   . |       || done in XX/XX/XXXX on a Lenovo G40-80  ||
 --    \________/       //----------------------------------------\\
---       |  |          || huge thanks to JavaCafe01 for helping  ||
---      /    \         ||       me massively in this project!    ||
+--       |  |          ||  huge thanks to everyone that helped   ||
+--      /    \         || me while i was making in this project! ||
 --     |      |        \\________________________________________//
 
 
@@ -18,12 +18,10 @@
 -- easy-to-access variables
 local vrs = require('vars')
 -- default awesome libraries
-local grs = require('gears')
-local awf = require('awful')
+local nty = require('naughty')
 local btf = require('beautiful')
 -- helpful functions
 local hlp = require('hlp')
-local nty = require('naughty')
 
 -- section 2 ||
 -- signals   ||
@@ -36,6 +34,7 @@ client.connect_signal("manage", sig_manage)
 -- load the rest ||
 -- ______________//
 
+btf.init(vrs.themeDir .. "theme.lua")
+local layout = require('layout')
 local keys = require('keys')
-local layout = require('layout.layout')
-btf.init(themeDir .. "theme.lua") -- [TBD] fix beautiful not loading even with the variable working.
+local widgets = require('widgets')
