@@ -4,7 +4,6 @@
 -- \\__ \\__// \\__ ||  || \\__ helps keep the code fresh and clean!
 --
 local grs = require('gears')
-print('this is vars!')
 cfgDir = grs.filesystem.get_configuration_dir()
 return {
   --_________
