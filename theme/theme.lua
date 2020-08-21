@@ -17,7 +17,7 @@ local dpi = xrsrc.apply_dpi
 local vars = require("vars")
 local theme = {}
 
-theme.font          = "Hyperspace Race 9"
+theme.font          = "Hyperspace Race Bold 10"
 
 theme.bg_normal     = xrdb.background or "#111111"
 theme.bg_focus      = xrdb.color3 or "#d2504e"
