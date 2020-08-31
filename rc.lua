@@ -27,6 +27,7 @@ local hlp = require('hlp')
 -- signals   ||
 -- __________//
 
+btf.init(vrs.themeDir .. "theme.lua")
 nty.connect_signal("request::display_error", startup_error)
 client.connect_signal("manage", sig_manage)
 
@@ -34,7 +35,6 @@ client.connect_signal("manage", sig_manage)
 -- load the rest ||
 -- ______________//
 
-btf.init(vrs.themeDir .. "theme.lua")
 local layout = require('layout')
 local keys = require('keys')
 local widgets = require('widgets')

@@ -15,14 +15,15 @@ local xrsrc = require("beautiful.xresources")
 local xrdb = xrsrc.get_current_theme()
 local dpi = xrsrc.apply_dpi
 local vars = require("vars")
+local grs = require("gears")
 local theme = {}
 
 theme.font          = "Hyperspace Race Bold 10"
 
 theme.bg_normal     = xrdb.background or "#111111"
-theme.bg_focus      = xrdb.color3 or "#d2504e"
-theme.bg_urgent     = xrdb.color3 or "#ff0000"
-theme.bg_minimize   = xrdb.color5 or "#444444"
+theme.bg_focus      = xrdb.color1 or "#d2504e"
+theme.bg_urgent     = xrdb.color1 or "#ff0000"
+theme.bg_minimize   = xrdb.color3 or "#444444"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = theme.bg_focus
@@ -33,8 +34,8 @@ theme.fg_minimize   = theme.bg_focus
 theme.useless_gap   = 4
 theme.gap_single_client  = true
 theme.border_width  = dpi(2)
-theme.border_normal = theme.bg_normal
-theme.border_focus  = xrdb.foreground or "#ffffff"
+theme.border_normal = theme.bg_minimize
+theme.border_focus  = theme.bg_focus or "#ffffff"
 theme.border_marked = theme.bg_minimize
 
 local taglist_square_size = dpi(4)
@@ -45,18 +46,20 @@ theme.taglist_squares_unsel = thmAssets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
-theme.notification_font = "Roboto Mono Nerd Font 9"
+theme.notification_font = "Hyperspace Race 9"
 theme.notification_bg = theme.bg_normal
 theme.notification_fg = theme.fg_normal
-theme.notification_width = dpi(10)
-theme.notification_height = dpi(12)
+theme.notification_max_width = dpi(450)
+theme.notification_max_height = dpi(75)
+theme.notification_icon_size = dpi(24)
+theme.notification_shape = function(c, w, h) grs.shape.rounded_rect(c, w, h, dpi(5)) end
 theme.menu_submenu_icon = vars.iconDir .. "reenii.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 theme.menu_border_color = theme.border_normal
 theme.menu_border_width = theme.border_width
 
-theme.wallpaper = vars.picsDir .. "Wallpapers/walliowall.jpg"
+theme.wallpaper = vars.picsDir .. "Wallpapers/monokai.png"
 
 -- layout icons!
 theme.layout_floating  = vars.iconDir.."layouts/floatingw.png"

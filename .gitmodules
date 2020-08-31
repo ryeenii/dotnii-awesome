@@ -1,3 +1,4 @@
 [submodule "awesome-switcher"]
 	path = awesome-switcher
-	url = http://github.com/berlam/awesome-switcher
+	url = http://github.com/grenzionky/awesome-switcher
+	branch = patch-1

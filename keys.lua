@@ -16,7 +16,7 @@ local modKey = "Mod4"
 local altKey = "Mod1"
 local ctrl = "Control"
 local shift = "Shift"
-local term = "urxvt"
+local term = "st"
 --   _________
 -- //  __  _  \\ (there was an attempt² trying to make a globe)
 -- || /  /\_/ || global keys. most of the average use keys
@@ -71,6 +71,10 @@ glkeys = grs.table.join (
   awf.key({ctrl}, "Print",
     function() awf.spawn("sh " .. vrs.scr) end,
     {description = "take a screenshot", group = "launcher"}
+  ),
+  awf.key({modKey}, "e",
+    function() awesome.quit() end,
+    {description = "quit awesome", group = "seeya"}
   )
 )
 clkeys = grs.table.join(

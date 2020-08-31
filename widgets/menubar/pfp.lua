@@ -24,7 +24,7 @@ function pfp(s)
     bg = btf.bg_normal,
     shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
   })
-  awf.placement.top_right(s.bar3, {margins = { top = dpi(5), right = dpi(7) }})
+  awf.placement.top_right(s.bar3, {margins = { top = dpi(5), right = dpi(8) }})
   s.pfp = wib.widget {
       image = vrs.pfpDir,
       resize = true,

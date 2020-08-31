@@ -9,13 +9,14 @@ local awf = require('awful')
 local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
+local xdb = xrc.get_current_theme()
 local wib = require('wibox')
 local dpi = xrc.apply_dpi
 
 function cal(s)
   s.prmpt = awf.widget.prompt()
   s.bar2 = wib({
-    width = 155,
+    width = 170,
     height = dpi(25),
     ontop = false,
     visible = true,
@@ -25,7 +26,7 @@ function cal(s)
     shape = function(cr, w, h) grs.shape.rounded_rect(cr, w, h, dpi(3)) end,
   })
   awf.placement.top_left(s.bar2, {margins = { top = dpi(5), left = 165 }})
-  s.cal = wib.widget.textclock('%a <span font="Hyperspace Race Extended Bold 12">%b %d</span> %Y', 1)
+  s.cal = wib.widget.textclock('<span color="' .. xdb.color2 .. '">%a</span> <span font="Hyperspace Race Extended Bold 12" color="' .. xdb.color3 .. '">%b %d</span> <span color="' .. xdb.color4 .. '">%Y</span>', 1)
   s.bar2:setup {
     layout = wib.layout.align.horizontal,
     expand = "none",
