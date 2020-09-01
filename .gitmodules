@@ -2,3 +2,6 @@
 	path = awesome-switcher
 	url = http://github.com/grenzionky/awesome-switcher
 	branch = patch-1
+[submodule "scripts"]
+	path = scripts
+	url = http://github.com/ryeenii/dotnii-scripts
