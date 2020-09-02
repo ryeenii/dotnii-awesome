@@ -21,7 +21,7 @@ local vrs = require('vars')
 local nty = require('naughty')
 local btf = require('beautiful')
 -- helpful functions
-local hlp = require('hlp')
+local fct = require('functions')
 
 -- section 2 ||
 -- signals   ||

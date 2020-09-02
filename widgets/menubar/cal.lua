@@ -11,6 +11,7 @@ local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local xdb = xrc.get_current_theme()
 local wib = require('wibox')
+local nty = require('naughty')
 local dpi = xrc.apply_dpi
 
 function cal(s)

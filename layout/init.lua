@@ -5,7 +5,7 @@
 -- |      ||     |
 -- \______/\_____/
 --
-local hlp = require('hlp')
+local fct = require('functions')
 local awf = require('awful')
 require("layout.switch")
 -- main window settings available.
