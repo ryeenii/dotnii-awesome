@@ -54,12 +54,12 @@ function spfp(s)
       shape = function(c, w, h) grs.shape.rounded_rect(c, w, h, dpi(3)) end
   })
   awf.placement.top_right(s.sname, {margins = { top = dpi(5), right = dpi(10) }})
-  s.name = wib.widget {
+  s.nm = wib.widget {
     markup = vrs.userName,
-    font = "Hyperspace Race Extended Bold 10",
+    font = "Hyperspace Race Extended Heavy 16",
     align = 'center',
     widget = wib.widget.textbox
-  } -- this for some reason gives an "got table" error, which while sure this is a table, this is a correctly set table. ????
+  } 
   s.sname:setup {
     layout = wib.layout.align.horizontal,
     expand = "none",
@@ -67,7 +67,7 @@ function spfp(s)
     {
       layout = wib.layout.fixed.horizontal,
       buttons = btn,
-      s.name
+      s.nm
     },
     nil
   }
