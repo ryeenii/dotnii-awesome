@@ -27,6 +27,9 @@ function startup_error(m, s)
   nty.notify {
 		 urgency = "critical",
 		 title   = "oh hey, an error happened"..(s and " during startup. you might want to have a look." or ". you might want to have a look."),
+     bg = btf.bg_focus,
+     fg = btf.bg_normal,
+     font = "Hyperspace Race Bold 10",
 		 message = m
   }
 end

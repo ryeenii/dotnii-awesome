@@ -15,7 +15,7 @@ local awf = require('awful')
 -- function below.
 local clb = require('widgets.menubar.clock')
 local cab = require('widgets.menubar.cal')
-local pfb = require('widgets.menubar.pfp')
+local pfb = require('widgets.menubar.sourire')
 function barstop(s)
   clock(s)
   cal(s)

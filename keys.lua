@@ -77,10 +77,16 @@ glkeys = grs.table.join (
     {description = "quit awesome", group = "seeya"}
   )
 )
+--  ___________
+-- /           \
+-- |           | client/window keys. 
+-- |           | this is where all the extravaganza
+-- |           | with your programs goes!
+-- \__________/
 clkeys = grs.table.join(
 		awf.key({modKey, "Shift"}, "q",
 				function(c) c:kill() end,
-        {description = "close window", group = "client"}
+        {description = "close client", group = "client"}
 		),
     awf.key({modKey}, "s",
       awf.client.floating.toggle,
@@ -90,14 +96,21 @@ clkeys = grs.table.join(
       function(c)
         c.maximized = not c.maximized
         c:raise()
-      end
+      end,
+      {description = "toggle client maximized", group="client"}
     ),
 	awf.key({modKey}, "t", 
 		function (c) 
 				c.ontop = not c.ontop 
-		end
+		end,
+    {description = "toggle client on top", group="client"}
 		)
-) 
+)
+--   ______________
+--  /              \
+-- | [1] 2 3 4 5 6 | tag/workspace buttons!
+-- \_______________/
+--
 for i = 1, 9 do
   glkeys = grs.table.join(glkeys,
                           awf.key({modKey}, "#" .. i + 9,
@@ -105,7 +118,7 @@ for i = 1, 9 do
                               local scr = awf.screen.focused()
                               local tag = scr.tags[i]
                               if tag then
-                                tag:view_only()
+                                tag:view_only() -- TODO: i really need to figure out how to focus the client window automatically when swapping tags
                               end
                             end,
                             {description = "view tag", group = "tag"}
@@ -123,13 +136,21 @@ for i = 1, 9 do
                           )
   )
 end
+  --   ________
+  --  /___ ___ \
+  -- ||   |   || and last,
+  -- ||___|___|| but not least:
+  -- |         | mouse/client buttons!
+  -- |         | they are really simple, but at the same time really efficient.
+  -- \________/
 clbuttons = grs.table.join(
-    awf.button({ }, 1, function (c) if not c then return end client.focus = c; c:raise() end),
+    awf.button({ }, 1, function (c) if not c then return end client.focus = c; c:raise() end), 
     awf.button({ modKey }, 1, awf.mouse.client.move),
     awf.button({ modKey }, 3, awf.mouse.client.resize)
 )
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
+  -- in order to load the keys *at all*, this small root.keys classification is necessary
 root.keys(glkeys)
 root.buttons(clbuttons)
