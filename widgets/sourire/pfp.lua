@@ -23,12 +23,6 @@ function spfp(s)
       bg = btf.bg_normal,
       shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
   })
-  local btn = grs.table.join(
-    awf.button({  }, 3, function()
-        local srr = require('widgets.sourire')
-        awf.screen.connect_for_each_screen(rtrn)
-    end)
-  )
   awf.placement.top_right(s.spfp, {margins = { top = dpi(5), right = dpi(150) }})
   s.pfp = wib.widget {
       image = vrs.pfpDir,
