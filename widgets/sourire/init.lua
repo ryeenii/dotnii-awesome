@@ -8,9 +8,11 @@ local srrpfp = require('widgets.sourire.pfp')
 function sourire(s)
     s.bar3.visible = false
     spfp(s)
+    menu = true
 end
 function rtrn(s)
     s.spfp.visible = false
     s.sname.visible = false
     s.bar3.visible = true
+    menu = false
 end

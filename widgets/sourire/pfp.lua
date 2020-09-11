@@ -1,3 +1,8 @@
+--  _______   _______
+-- /  ___  \ /       \ look, it's you, User!
+-- | /. .\ | | User! | zoomed profile pic + name menu
+-- | \___/ | \_______/ 
+-- \_______/
 local awf = require('awful')
 local grs = require('gears')
 local btf = require('beautiful')

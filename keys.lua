@@ -73,8 +73,15 @@ glkeys = grs.table.join (
     {description = "take a screenshot", group = "launcher"}
   ),
   awf.key({modKey}, "e",
-    function() awesome.quit() end,
-    {description = "quit awesome", group = "seeya"}
+    function()
+      local srr = require('widgets.sourire')
+      if not menu then
+        awf.screen.connect_for_each_screen(sourire)
+      else
+        awf.screen.connect_for_each_screen(rtrn)
+      end
+    end,
+    {description = "toggle sourire menu", group = "sourire"}
   )
 )
 --  ___________
@@ -145,8 +152,16 @@ end
   -- \________/
 clbuttons = grs.table.join(
   awf.button({ }, 1, function (c)
-        if not c then return end client.focus = c; c:raise()
+      if not c then return end client.focus = c; c:raise()
   end), 
+  awf.button({ }, 3, function()
+      local srr = require('widgets.sourire')
+      if not menu then
+        return
+      else
+        awf.screen.connect_for_each_screen(rtrn)
+      end
+  end),
     awf.button({ modKey }, 1, awf.mouse.client.move),
     awf.button({ modKey }, 3, awf.mouse.client.resize)
 )
