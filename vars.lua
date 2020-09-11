@@ -28,6 +28,7 @@ return {
   rofi = cfgDir .. "scripts/rofi.sh",
   scr = cfgDir .. "scripts/scr.sh",
   scrDelay = cfgDir .. "scripts/scr-delay.sh",
+  str = cfgDir .. "scripts/str.sh",
   --   ___
   -- //   \\______
   -- ||           || down there goes the directories, used in the widgets (still TBA).
