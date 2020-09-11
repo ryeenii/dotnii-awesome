@@ -144,7 +144,9 @@ end
   -- |         | they are really simple, but at the same time really efficient.
   -- \________/
 clbuttons = grs.table.join(
-    awf.button({ }, 1, function (c) if not c then return end client.focus = c; c:raise() end), 
+  awf.button({ }, 1, function (c)
+        if not c then return end client.focus = c; c:raise()
+  end), 
     awf.button({ modKey }, 1, awf.mouse.client.move),
     awf.button({ modKey }, 3, awf.mouse.client.resize)
 )

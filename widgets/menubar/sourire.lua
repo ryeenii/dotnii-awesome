@@ -15,13 +15,13 @@ function pfp(s)
   local btn = grs.table.join(
     awf.button({  }, 1, function()
         local srr = require('widgets.sourire')
-        sourire(s.bar3)
+        awf.screen.connect_for_each_screen(sourire)
     end)
   )
   s.prmpt = awf.widget.prompt()
   s.bar3 = wib ({
     width = 25,
-    height = dpi(25),
+    height = 25,
     position = 'top',
     ontop = false,
     visible = true,

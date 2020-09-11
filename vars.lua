@@ -16,6 +16,7 @@ return {
   themeDir = cfgDir .. "theme/",
   iconDir = cfgDir .. "icon/",
   pfpDir = cfgDir .. "icon/reenii.png", -- here, you change the profile pic!
+  userName = os.getenv("USER") or "User",
   -- {{
   -- below are the scripts used alongside the WM (such as rofi and maim).
   -- they are used for multiple reasons in keys.lua, so if you want to exclude
