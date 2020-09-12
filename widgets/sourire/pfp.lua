@@ -42,7 +42,7 @@ function spfp(s)
     nil
   }
   s.sname = wib ({
-      width = 130,
+      width = 130, -- TODO(?): maybe consider a autofill if possible 
       height = 33,
       position = 'top',
       ontop = true,

@@ -38,3 +38,25 @@ function sig_manage(c)
     client.focus = c
     c:raise()
 end
+
+function colorswap()
+  local xrc = require('beautiful.xresources')
+  local xdb = xrc.get_current_theme()
+  if not csw then
+    csw = xdb.color3
+  else
+    if csw == xdb.color3 then
+      csw = xdb.color2
+    else if csw == xdb.color2 then
+      csw = xdb.color4
+    else if csw == xdb.color4 then
+      csw = xdb.color5
+    else if csw == xdb.color5 then
+      csw = xdb.color3
+    end
+    end
+    end
+    end 
+  end
+  return csw
+end
