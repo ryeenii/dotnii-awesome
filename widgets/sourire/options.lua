@@ -21,9 +21,9 @@ function sopt(s)
       border_width = dpi(2),
       border_color = btf.bg_focus,
       bg = btf.bg_normal,
-      fg = colorswap(),
       shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end
   })
+  s.stt.fg = colorswap(s)
   awf.placement.top_right(s.stt, {margins = { top = dpi(45), right = dpi(105) }})
   s.stx = wib.widget {
     markup = ' ',

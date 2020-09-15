@@ -9,6 +9,7 @@ local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
 local vrs = require('vars')
+local fnc = require('functions')
 local dpi = xrc.apply_dpi
 function spfp(s)
   s.prmpt = awf.widget.prompt()
@@ -50,6 +51,7 @@ function spfp(s)
       border_width = dpi(2),
       border_color = btf.bg_focus,
       bg = btf.bg_normal,
+      fg = btf.bg_minimize,
       shape = function(c, w, h) grs.shape.rounded_rect(c, w, h, dpi(3)) end
   })
   awf.placement.top_right(s.sname, {margins = { top = dpi(5), right = dpi(10) }})
