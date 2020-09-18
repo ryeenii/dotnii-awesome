@@ -8,7 +8,8 @@ local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
-local vrs = require('vars')
+local vrs = require('config.defcfg')
+local uvrs = require('config.usercfg')
 local fnc = require('functions')
 local dpi = xrc.apply_dpi
 function spfp(s)
@@ -26,7 +27,7 @@ function spfp(s)
   })
   awf.placement.top_right(s.spfp, {margins = { top = dpi(5), right = dpi(150) }})
   s.pfp = wib.widget {
-      image = vrs.pfpDir,
+      image = uvrs.pfpDir or vrs.pfpDir,
       resize = true,
       clip_shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(2)) end,
       widget = wib.widget.imagebox
@@ -56,7 +57,7 @@ function spfp(s)
   })
   awf.placement.top_right(s.sname, {margins = { top = dpi(5), right = dpi(10) }})
   s.nm = wib.widget {
-    markup = vrs.userName,
+    markup = uvrs.userName or vrs.userName,
     font = "Hyperspace Race Extended Heavy 16",
     align = 'center',
     widget = wib.widget.textbox

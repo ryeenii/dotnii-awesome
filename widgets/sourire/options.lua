@@ -7,7 +7,6 @@ local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
-local vrs = require('vars')
 local fnc = require('functions')
 local dpi = xrc.apply_dpi
 function sopt(s)
