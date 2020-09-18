@@ -10,7 +10,6 @@
 local awf = require('awful')
 local grs = require('gears')
 local swt = require('awesome-switcher')
-local vrs = require('config.defcfg')
 local uvrs = require('config.usercfg')
 -- since most of the keys are case sensitive, let's lowercase them down for easy usage
 local modKey = "Mod4"

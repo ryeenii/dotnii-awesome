@@ -8,7 +8,6 @@ local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
-local vrs = require('config.defcfg')
 local uvrs = require('config.usercfg')
 local fnc = require('functions')
 local dpi = xrc.apply_dpi
@@ -27,9 +26,8 @@ function spfp(s)
   })
   awf.placement.top_right(s.spfp, {margins = { top = dpi(5), right = dpi(150) }})
   s.pfp = wib.widget {
-      image = uvrs.pfpDir or vrs.pfpDir,
+      image = uvrs.pfpDir,
       resize = true,
-      clip_shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(2)) end,
       widget = wib.widget.imagebox
   }
   s.spfp:setup {

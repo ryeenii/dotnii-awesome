@@ -8,7 +8,6 @@ local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
-local vrs = require('config.defcfg')
 local uvrs = require('config.usercfg')
 local dpi = xrc.apply_dpi
 
