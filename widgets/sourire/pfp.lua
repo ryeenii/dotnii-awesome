@@ -57,7 +57,7 @@ function spfp(s)
   })
   awf.placement.top_right(s.sname, {margins = { top = dpi(5), right = dpi(10) }})
   s.nm = wib.widget {
-    markup = uvrs.userName or vrs.userName,
+    markup = uvrs.userName,
     font = "Hyperspace Race Extended Heavy 16",
     align = 'center',
     widget = wib.widget.textbox

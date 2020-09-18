@@ -14,7 +14,6 @@ local thmAssets = require("beautiful.theme_assets")
 local xrsrc = require("beautiful.xresources")
 local xrdb = xrsrc.get_current_theme()
 local dpi = xrsrc.apply_dpi
-local vrs = require("config.defcfg")
 local uvrs = require('config.usercfg')
 local grs = require("gears")
 local theme = {}
@@ -55,15 +54,15 @@ theme.notification_max_height = dpi(75)
 theme.notification_icon_size = dpi(24)
 theme.notification_shape = function(c, w, h) grs.shape.rounded_rect(c, w, h, dpi(5)) end
 
-theme.menu_submenu_icon = uvrs.iconDir or vrs.iconDir .. "reenii.png"
+theme.menu_submenu_icon = uvrs.iconDir .. "reenii.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 theme.menu_border_color = theme.border_normal
 theme.menu_border_width = theme.border_width
 
-theme.wallpaper = uvrs.picsDir or vrs.picsDir .. "Wallpapers/monokai.png"
+theme.wallpaper = uvrs.picsDir .. "Wallpapers/monokai.png"
 
--- TODO: work on the icons!
+-- TODO: work on the layout icons!
 -- there's so many layouts to do...
 -- but they're gonna be fun for sure!
 

@@ -50,15 +50,15 @@ glkeys = grs.table.join (
     {description = "open a terminal", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "d",
-    function() awf.spawn("sh " .. uvrs.rofi or vrs.rofi)  end,
+    function() awf.spawn("sh " .. uvrs.rofi)  end,
     {description = "run prompt (xdg mode)", group = "launcher"}
   ),
   awf.key({modKey}, "d",
-    function() awf.spawn("sh " .. uvrs.rofiRun or vrs.rofiRun) end,
+    function() awf.spawn("sh " .. uvrs.rofiRun) end,
     {description = "run prompt", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "e",
-    function() awf.spawn("sh " .. uvrs.rofiRun or vrs.rofiEmoji) end,
+    function() awf.spawn("sh " .. uvrs.rofiRun) end,
     {description = "emoji prompt", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "r",
@@ -70,7 +70,7 @@ glkeys = grs.table.join (
     {description = "change layout type", group = "layout"}
   ),
   awf.key({ctrl}, "Print",
-    function() awf.spawn("sh " .. uvrs.scr or vrs.scr) end,
+    function() awf.spawn("sh " .. uvrs.scr) end,
     {description = "take a screenshot", group = "launcher"}
   ),
   awf.key({modKey}, "e",

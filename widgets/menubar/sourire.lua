@@ -33,7 +33,7 @@ function pfp(s)
   })
   awf.placement.top_right(s.bar3, {margins = { top = dpi(5), right = dpi(8) }})
   s.pfp = wib.widget {
-      image = uvrs.pfpDir or vrs.pfpDir,
+      image = uvrs.pfpDir,
       resize = true,
       clip_shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(2)) end,
       widget = wib.widget.imagebox

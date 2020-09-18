@@ -15,9 +15,7 @@
 -- default configs and libraries ||
 -- ______________________________//
 
--- first, we load the default configs
-local vrs = require('config.defcfg')
--- then, we overwrite these values with the user settings.
+-- we load only the user configs because they are by default the standard configs, which can be afterwards changed by your likings.
 local uvrs = require('config.usercfg')
 -- default awesome libraries
 local nty = require('naughty')
@@ -29,11 +27,11 @@ local fct = require('functions')
 -- signals   ||
 -- __________//
 
-btf.init(vrs.themeDir .. "theme.lua")
+btf.init(uvrs.themeDir .. "theme.lua")
 nty.connect_signal("request::display_error", startup_error)
 client.connect_signal("manage", sig_manage)
 nty.notify {
-  message = uvrs.userName or vrs.userName
+  message = uvrs.userName
 }
 -- section 3     ||
 -- load the rest ||
