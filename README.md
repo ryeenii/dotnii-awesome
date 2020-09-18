@@ -5,7 +5,7 @@
 	<img src="https://raw.githubusercontent.com/ryeenii/dotnii-awesome/master/icon/readme/dotnii-awm.png" width="250">
 </p>
 <h1 align=center>
-dotnii - AwesomeWM
+dotnii - AwesomeWM [settings module branch]
 </h1>
 <h4 align=center>
 <i>
