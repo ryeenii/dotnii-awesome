@@ -18,7 +18,7 @@ local vars = require("vars")
 local grs = require("gears")
 local theme = {}
 
-theme.font          = "Hyperspace Race Bold 10"
+theme.font          = "Hyperspace Race Bold 10" or "Sans 10"
 
 theme.bg_normal     = xrdb.background or "#111111"
 theme.bg_focus      = xrdb.color1 or "#d2504e"
@@ -46,7 +46,7 @@ theme.taglist_squares_unsel = thmAssets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
-theme.notification_font = "Hyperspace Race 9"
+theme.notification_font = theme.font
 theme.notification_bg = theme.bg_normal
 theme.notification_fg = theme.fg_normal
 theme.notification_max_width = dpi(450)
@@ -61,10 +61,9 @@ theme.menu_border_width = theme.border_width
 
 theme.wallpaper = vars.picsDir .. "Wallpapers/monokai.png"
 
--- layout icons!
-theme.layout_floating  = vars.iconDir.."layouts/floatingw.png"
-theme.layout_tileleft   = vars.iconDir.."layouts/tileleftw.png"
-theme.layout_tile = vars.iconDir.."layouts/tilew.png"
+-- TODO: work on the icons!
+-- there's so many layouts to do...
+-- but they're gonna be fun for sure!
 
 -- Define the icon theme.for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

@@ -82,7 +82,10 @@ glkeys = grs.table.join (
       end
     end,
     {description = "toggle sourire menu", group = "sourire"}
-  )
+  ),
+  awf.key({modKey}, "Escape",
+  	function() awesome.quit() end,
+	{description = "quit awesome", group = "seeya!"})
 )
 --  ___________
 -- /           \
