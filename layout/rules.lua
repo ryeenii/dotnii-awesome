@@ -17,8 +17,8 @@ awf.rules.rules = {
     },
     {
         rule_any = {
-            instance = {"copyq","floating_terminal","Devtools"},
-            class = {"Gpick","Lxappearance","Nm-connection-editor","File-roller","fst", "Steam"},
+            instance = {"copyq","floating_terminal","Devtools", "MultiMC", "steam"},
+            class = {"Gpick","Lxappearance","Nm-connection-editor","File-roller","fst"},
             role = {"AlarmWindow","pop-up","GtkFileChooserDialog","conversation"},
             type = {"dialog"}
         },

@@ -17,7 +17,7 @@ local dpi = xrc.apply_dpi
 function cal(s)
   s.prmpt = awf.widget.prompt()
   s.bar2 = wib({
-    width = 170,
+    width = 140,
     height = dpi(25),
     ontop = false,
     visible = true,
@@ -26,8 +26,8 @@ function cal(s)
     bg = btf.bg_normal,
     shape = function(cr, w, h) grs.shape.rounded_rect(cr, w, h, dpi(3)) end,
   })
-  awf.placement.top_left(s.bar2, {margins = { top = dpi(5), left = 165 }})
-  s.cal = wib.widget.textclock('<span color="' .. xdb.color2 .. '">%a</span> <span font="Hyperspace Race Extended Bold 12" color="' .. xdb.color3 .. '">%b %d</span> <span color="' .. xdb.color4 .. '">%Y</span>', 1)
+  awf.placement.top_left(s.bar2, {margins = { top = dpi(5), left = 130 }})
+  s.cal = wib.widget.textclock('<span color="' .. xdb.color2 .. '">%a</span> <span font="' .. btf.alt_font .. '" color="' .. xdb.color3 .. '">%b %d</span> <span color="' .. xdb.color4 .. '">%Y</span>', 1)
   s.bar2:setup {
     layout = wib.layout.align.horizontal,
     expand = "none",

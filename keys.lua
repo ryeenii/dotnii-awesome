@@ -9,7 +9,7 @@
 -- main libraries
 local awf = require('awful')
 local grs = require('gears')
-local swt = require('awesome-switcher')
+local swt = require('lib.awesome-switcher')
 local uvrs = require('config.usercfg')
 -- since most of the keys are case sensitive, let's lowercase them down for easy usage
 local modKey = "Mod4"
@@ -165,6 +165,7 @@ clbuttons = grs.table.join(
         awf.screen.connect_for_each_screen(rtrn)
       end
   end),
+  awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
     awf.button({ modKey }, 1, awf.mouse.client.move),
     awf.button({ modKey }, 3, awf.mouse.client.resize)
 )

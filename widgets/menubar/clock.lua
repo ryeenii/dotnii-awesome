@@ -14,7 +14,7 @@ local dpi = xrc.apply_dpi
 
 function clock(s)
   s.bar1 = wib ({
-    width = 150,
+    width = 115,
     height = dpi(25),
     position = 'top',
     ontop = false,
@@ -29,7 +29,7 @@ function clock(s)
     top = dpi(31)
   })
   awf.placement.top_left(s.bar1, {margins = { top = dpi(5), left = dpi(7) }})
-  s.clock = wib.widget.textclock('<span font="Hyperspace Race Extended Bold 12" color="' .. xdb.color3 .. '">%H:%M:%S</span> %p', 1)
+  s.clock = wib.widget.textclock('<span font="' .. btf.alt_font .. '" color="' .. xdb.color3 .. '">%H:%M:%S</span> %p', 1)
   s.bar1:setup {
     layout = wib.layout.align.horizontal,
     expand = "none",

@@ -30,9 +30,8 @@ local fct = require('functions')
 btf.init(uvrs.themeDir .. "theme.lua")
 nty.connect_signal("request::display_error", startup_error)
 client.connect_signal("manage", sig_manage)
-nty.notify {
-  message = uvrs.userName
-}
+local spw = require('awful.spawn')
+spw('picom --backend glx')
 -- section 3     ||
 -- load the rest ||
 -- ______________//
