@@ -30,7 +30,12 @@ function tags(s)
   awf.placement.bottom_left(s.bar4, {margins = { bottom = dpi(5), left = dpi(7) }})
   s.taglist = awf.widget.taglist {
     screen = s,
-    filter = awf.widget.taglist.filter.all
+    filter = awf.widget.taglist.filter.all,
+    style = {
+      shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
+      spacing = 5,
+      font = btf.alt_font
+    }
   } 
   s.bar4:setup {
     layout = wib.layout.align.horizontal,
