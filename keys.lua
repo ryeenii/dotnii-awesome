@@ -23,7 +23,7 @@ local term = "st"
 -- || \_/  __ || are on this section.
 -- ||     /_/ ||
 -- \\_________//
-glkeys = grs.table.join (
+awf.keyboard.append_global_keybindings({
   awf.key({modKey, "Shift"}, "Up",
     function () awf.client.swap.bydirection("up") end,
     {description = "swap positions according to direction given [up]", group = "window"}
@@ -86,14 +86,15 @@ glkeys = grs.table.join (
   awf.key({modKey}, "Escape",
   	function() awesome.quit() end,
 	{description = "quit awesome", group = "seeya!"})
-)
+})
 --  ___________
 -- /           \
 -- |           | client/window keys. 
 -- |           | this is where all the extravaganza
 -- |           | with your programs goes!
 -- \__________/
-clkeys = grs.table.join(
+client.connect_signal("request::default_keybindings", function() 
+	awf.keyboard.append_client_keybindings({
 		awf.key({modKey, "Shift"}, "q",
 				function(c) c:kill() end,
         {description = "close client", group = "client"}
@@ -115,14 +116,15 @@ clkeys = grs.table.join(
 		end,
     {description = "toggle client on top", group="client"}
 		)
-)
---   ______________
---  /              \
+	})
+end)
+--  _______________
+-- /               \
 -- | [1] 2 3 4 5 6 | tag/workspace buttons!
 -- \_______________/
 --
 for i = 1, 9 do
-  glkeys = grs.table.join(glkeys,
+  awf.keyboard.append_global_keybindings({
                           awf.key({modKey}, "#" .. i + 9,
                             function()
                               local scr = awf.screen.focused()
@@ -144,7 +146,7 @@ for i = 1, 9 do
                             end,
                             {description = "move focused client to tag #"..i, group = "tag"}
                           )
-  )
+	})
 end
   --   ________
   --  /___ ___ \
@@ -153,25 +155,30 @@ end
   -- |         | mouse/client buttons!
   -- |         | they are really simple, but at the same time really efficient.
   -- \________/
-clbuttons = grs.table.join(
-  awf.button({ }, 1, function (c)
-      if not c then return end client.focus = c; c:raise()
-  end), 
-  awf.button({ }, 3, function()
-      local srr = require('widgets.sourire')
-      if not menu then
-        return
-      else
-        awf.screen.connect_for_each_screen(rtrn)
-      end
-  end),
-  awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
-    awf.button({ modKey }, 1, awf.mouse.client.move),
-    awf.button({ modKey }, 3, awf.mouse.client.resize)
-)
+client.connect_signal("request::default_mousebindings", function()
+	awf.mouse.append_client_mousebindings({
+		awf.button({ }, 1, function (c)
+			c:activate { context = "mouse_click" }
+		end), 
+		awf.button({ modKey }, 1, function(c)
+			c:activate { context = "mouse_click", action = "mouse_move" }
+		end),
+		awf.button({ modKey }, 3, function(c)
+			c:activate { context = "mouse_click", action = "mouse_resize" }
+		end)
+  })
+  awf.mouse.append_client_mousebindings({
+	awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
+	awf.button({ }, 3, function()
+		local srr = require('widgets.sourire')
+		if not menu then
+			return
+		else
+			awf.screen.connect_for_each_screen(rtrn)
+		end
+	end)
+	})
+end)
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
-  -- in order to load the keys *at all*, this small root.keys classification is necessary
-root.keys(glkeys)
-root.buttons(clbuttons)
