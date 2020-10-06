@@ -1,7 +1,8 @@
 local awf = require("awful")
+local rld = require("ruled")
 local btf = require("beautiful")
 local kys = require("keys")
-awf.rules.rules = {
+rld.client.append_rule = {
     {
         rule = { },
         properties = {
