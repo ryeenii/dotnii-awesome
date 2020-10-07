@@ -45,7 +45,7 @@ function colorswap(e)
   if not e.cs then
     e.cs = xdb.color3
 	else
-		e.cs = xdb['color' .. math.random(1, 7)]
+		e.cs = xdb['color' .. math.random(1, 6)]
   end
   return e.cs
 end
