@@ -165,18 +165,16 @@ client.connect_signal("request::default_mousebindings", function()
 		end),
 		awf.button({ modKey }, 3, function(c)
 			c:activate { context = "mouse_click", action = "mouse_resize" }
-		end)
-  })
-  awf.mouse.append_client_mousebindings({
-	awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
-	awf.button({ }, 3, function()
-		local srr = require('widgets.sourire')
-		if not menu then
-			return
-		else
-			awf.screen.connect_for_each_screen(rtrn)
-		end
-	end)
+		end),
+    awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
+    awf.button({ }, 3, function()
+        local srr = require('widgets.sourire')
+        if not menu then
+          return
+        else
+          awf.screen.connect_for_each_screen(rtrn)
+        end
+    end)
 	})
 end)
 client.connect_signal("mouse::enter", function(c)
