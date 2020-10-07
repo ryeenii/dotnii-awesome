@@ -12,12 +12,6 @@ local uvrs = require('config.usercfg')
 local dpi = xrc.apply_dpi
 
 function pfp(s)
-  local btn = grs.table.join(
-    awf.button({  }, 1, function()
-        local srr = require('widgets.sourire')
-        awf.screen.connect_for_each_screen(sourire)
-    end)
-  )
   s.prmpt = awf.widget.prompt()
   s.bar3 = wib ({
     width = 25,
@@ -43,7 +37,12 @@ function pfp(s)
     nil,
     {
       layout = wib.layout.fixed.horizontal,
-      buttons = btn,
+      buttons = {
+        awf.button({  }, 1, function()
+            local srr = require('widgets.sourire')
+            awf.screen.connect_for_each_screen(sourire)
+        end)
+      },
       s.pfp
     },
     nil
