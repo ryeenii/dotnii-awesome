@@ -24,7 +24,7 @@ function spfp(s)
       bg = btf.bg_normal,
       shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
   })
-  awf.placement.top_right(s.spfp, {margins = { top = dpi(5), right = dpi(150) }})
+  awf.placement.top_right(s.spfp, {margins = { top = dpi(5), right = dpi(137) }})
   s.pfp = wib.widget {
       image = uvrs.pfpDir,
       resize = true,
@@ -42,7 +42,7 @@ function spfp(s)
     nil
   }
   s.sname = wib ({
-      width = 130, -- TODO(?): maybe consider a autofill if possible 
+      width = 120, 
       height = 33,
       position = 'top',
       ontop = true,
