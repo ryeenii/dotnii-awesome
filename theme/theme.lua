@@ -20,7 +20,7 @@ local theme = {}
 
 theme.font          = "Recursive Sans Linear Static 10" or "Sans 10"
 theme.alt_font		= "Recursive Sans Linear Static Bold 11" or "Sans 10"
-theme.bg_normal     = xrdb.background .. "D0" or "#111111"
+theme.bg_normal     = xrdb.background .. "E0" or "#111111"
 theme.bg_focus      = xrdb.color1 or "#d2504e"
 theme.bg_urgent     = xrdb.color1 or "#ff0000"
 theme.bg_minimize   = xrdb.color3 or "#444444"
