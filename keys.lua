@@ -84,7 +84,14 @@ awf.keyboard.append_global_keybindings({
     {description = "toggle sourire menu", group = "sourire"}
   ),
   awf.key({modKey}, "Escape",
-  	function() awesome.quit() end,
+  	function()
+      local pwr = require('widgets.power-options')
+      if not menu then
+        awf.screen.connect_for_each_screen(pwrRev)
+      else
+        awf.screen.connect_for_each_screen(pwrFad)
+      end
+    end,
 	{description = "quit awesome", group = "seeya!"})
 })
 --  ___________
