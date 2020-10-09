@@ -56,7 +56,7 @@ function spfp(s)
   awf.placement.top_right(s.sname, {margins = { top = dpi(5), right = dpi(10) }})
   s.nm = wib.widget {
     markup = uvrs.userName,
-    font = "Recursive Sans Linear Static Bold 16",
+    font = "Recursive Sans Linear Static Bold 13",
     align = 'center',
     widget = wib.widget.textbox
   } 

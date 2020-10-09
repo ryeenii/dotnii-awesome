@@ -22,7 +22,7 @@ function sopt(s)
       bg = btf.bg_normal,
       shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end
   })
-  s.stt.fg = colorswap(s)
+  s.stt.fg = colorswap()
   awf.placement.top_right(s.stt, {margins = { top = dpi(45), right = dpi(95) }})
   s.stx = wib.widget {
     markup = ' ',

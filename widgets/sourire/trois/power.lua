@@ -36,14 +36,14 @@ function spwr(s)
     nil,
     {
       layout = wib.layout.fixed.horizontal,
-      buttons = {
-        awf.button({ }, 1, function()
-            local pwr = require("widgets.power-options")
-            awf.screen.connect_for_each_screen(pwrRev)
-        end)
-      },
       s.ptx
     },
     nil
   }
+  s.pwr:buttons({
+    awf.button({ }, 1, function()
+      local pwr = require("widgets.power-options")
+      awf.screen.connect_for_each_screen(pwrRev)
+    end)
+  })
 end
