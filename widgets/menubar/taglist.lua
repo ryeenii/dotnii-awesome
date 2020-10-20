@@ -13,7 +13,7 @@ local dpi = xrc.apply_dpi
 function tags(s)
   s.prmpt = awf.widget.prompt()
   s.bar4 = wib({
-      width = 300,
+      width = 320,
       height = 25,
       position = 'bottom',
       ontop = false,
@@ -34,8 +34,21 @@ function tags(s)
     style = {
       shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
       spacing = 5,
-      font = btf.alt_font
-    }
+      font = "RecMono Nerd Font Bold 10"
+    },
+		widget_template = {
+				{
+						{
+								{id = 'text_role', widget = wib.widget.textbox},
+								layout = wib.layout.fixed.horizontal
+            },
+            left = 5,
+            right = 5,
+            widget = wib.container.margin
+				},
+				id = 'background_role',
+				widget = wib.container.background
+		}
   } 
   s.bar4:setup {
     layout = wib.layout.align.horizontal,
