@@ -24,19 +24,19 @@ local term = "st"
 -- ||     /_/ ||
 -- \\_________//
 awf.keyboard.append_global_keybindings({
-  awf.key({modKey, "Shift"}, "Up",
+  awf.key({modKey, "Control"}, "Up",
     function () awf.client.swap.bydirection("up") end,
     {description = "swap positions according to direction given [up]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Left",
+  awf.key({modKey, "Control"}, "Left",
     function() awf.client.swap.bydirection("left") end,
     {description = "swap positions according to direction given [left]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Down",
+  awf.key({modKey, "Control"}, "Down",
     function() awf.client.swap.bydirection("down") end,
     {description = "swap positions according to direction given [down]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Right",
+  awf.key({modKey, "Control"}, "Right",
     function() awf.client.swap.bydirection("right") end,
     {description = "swap positions according to direction given [right]", group = "window"}
   ),
@@ -71,6 +71,10 @@ awf.keyboard.append_global_keybindings({
   awf.key({ctrl}, "Print",
     function() awf.spawn("sh " .. uvrs.scr) end,
     {description = "take a screenshot", group = "launcher"}
+  ),
+  awf.key({ctrl, "Shift"}, "Print",
+    function() awf.spawn("sh " .. uvrs.scr .. " -d") end,
+    {description = "take a delayed screenshot", group = "launcher"}
   ),
   awf.key({modKey}, "e",
     function()
@@ -117,11 +121,75 @@ client.connect_signal("request::default_keybindings", function()
       end,
       {description = "toggle client maximized", group="client"}
     ),
-	awf.key({modKey}, "t", 
-		function (c) 
-				c.ontop = not c.ontop 
-		end,
-    {description = "toggle client on top", group="client"}
+		awf.key({modKey}, "t", 
+				function (c) 
+						c.ontop = not c.ontop 
+				end,
+				{description = "toggle client on top", group="client"}
+		),
+		awf.key({modKey}, "Left",
+				function (c)
+						if c.floating then
+								c:relative_move(-10, 0, 0, 0)
+						end
+				end,
+				{description = "move floating client to the left by 10px", group="client"}
+		),
+		awf.key({modKey}, "Right",
+				function (c)
+						if c.floating then
+								c:relative_move(10, 0, 0, 0)
+						end
+				end,
+				{description = "move floating client to the right by 10px", group="client"}
+		),
+		awf.key({modKey}, "Up",
+				function (c)
+						if c.floating then
+								c:relative_move(0, -10, 0, 0)
+						end
+				end,
+				{description = "move floating client to the top by 10px", group="client"}
+		),
+		awf.key({modKey}, "Down",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 10, 0, 0)
+						end
+				end,
+				{description = "move floating client to the bottom by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Left",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, -10, 0)
+						end
+				end,
+				{description = "resize floating client to the left by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Right",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 10, 0)
+						end
+				end,
+				{description = "resize floating client to the right by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Up",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 0, -10)
+						end
+				end,
+				{description = "resize floating client to the top by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Down",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 0, 10)
+						end
+				end,
+				{description = "resize floating client to the bottom by 10px", group="client"}
 		)
 	})
 end)
