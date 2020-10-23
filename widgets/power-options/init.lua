@@ -13,7 +13,7 @@ local uvrs = require('config.usercfg')
 local grs = require('gears')
 local pwrlgo = require('widgets.power-options.logout')
 local pwroff = require('widgets.power-options.poweroff')
-local pwrrfr = require('widgets.power-options.refresh')
+local pwrrfr = require('widgets.power-options.restart')
 local srr = require('widgets.sourire')
 function pwrRev(s)
   if s.pwtxt then
@@ -22,6 +22,8 @@ function pwrRev(s)
     end
     s.pwtxt.visible = true
     s.pwoff.visible = true
+    s.lgout.visible = true
+    s.rstrt.visible = true
   else
     s.prmpt = awf.widget.prompt()
     s.pwtxt = wib({
@@ -38,7 +40,7 @@ function pwrRev(s)
     })
     awf.placement.centered(s.pwtxt, {margins={bottom = dpi(100)}})
     s.pwtxw = wib.widget {
-      markup = "seeya, " .. uvrs.userName .. "!",
+      markup = " seeya, " .. uvrs.userName .. "!",
       font = btf.alt_font,
       align = 'center',
       widget = wib.widget.textbox
@@ -62,6 +64,8 @@ function pwrRev(s)
       nil
     }
 		poweroff(s)
+		logout(s)
+		restart(s)
 		end
   if menu then
     return
@@ -73,6 +77,8 @@ function pwrFad(s)
   if s.pwtxt then
     s.pwtxt.visible = false
     s.pwoff.visible = false
+    s.lgout.visible = false
+    s.rstrt.visible = false
     menu = false
   else
     return

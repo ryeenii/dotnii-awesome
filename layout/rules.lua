@@ -20,7 +20,7 @@ rld.client.connect_signal("request::rules", function()
 				"copyq",
 				"floating_terminal",
 				"Devtools", 
-				"MultiMC", 
+				"multimc", 
 				"steam"
 			},
 			class = {

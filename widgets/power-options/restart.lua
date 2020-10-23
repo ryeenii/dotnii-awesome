@@ -1,4 +1,3 @@
-
 local wib = require('wibox')
 local awf = require('awful')
 local grs = require('gears')
@@ -6,8 +5,8 @@ local btf = require('beautiful')
 local fnc = require('functions')
 local xrc = btf.xresources
 local dpi = xrc.apply_dpi
-function logout(s)
-		s.lgout = wib({
+function restart(s)
+		s.rstrt = wib({
         width = 120,
         height = 120,
         position = 'top',
@@ -18,31 +17,31 @@ function logout(s)
         bg = btf.bg_normal,
         shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end
     })
-    s.lgout.fg = colorswap()
-    awf.placement.centered(s.lgout, {margins={top = dpi(100), left = dpi(260)}})
-    s.lootx = wib.widget {
-      markup = 'ﴚ',
+    s.rstrt.fg = colorswap()
+    awf.placement.centered(s.rstrt, {margins={top = dpi(100), right = dpi(260)}})
+    s.rsttx = wib.widget {
+      markup = '',
       font = 'RecMono Nerd Font 48',
       align = 'center',
       widget = wib.widget.textbox
     }
-    s.loodi = wib.widget {
-      markup = 'logout',
+    s.rstdi = wib.widget {
+      markup = 'restart',
       font = 'RecMono Nerd Font Bold 10',
       align = 'center',
       widget = wib.widget.textbox
     }
-    s.lgout:setup {
+    s.rstrt:setup {
       layout = wib.layout.align.vertical,
       expand = 'none',
       nil,
       {
         layout = wib.layout.fixed.vertical,
-        s.lootx
+        s.rsttx
       },
-      s.loodi
+      s.rstdi
     }
-    s.lgout:buttons({
-        awf.button({  }, 1, function() awesome.quit() end)
+    s.rstrt:buttons({
+        awf.button({  }, 1, function() awf.spawn("reboot") end)
     })
 end
