@@ -35,7 +35,7 @@ function menutool(s)
 				},
 				nil
 		}
-		rofimode = uvrs.rofi
+		local rofimode = uvrs.rofi
 		s.bar5:buttons {
 				awf.button({ }, 3, function()
 						if s.mnt.markup == '<b>drun </b>' then

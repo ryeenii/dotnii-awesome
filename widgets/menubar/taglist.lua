@@ -13,7 +13,7 @@ local dpi = xrc.apply_dpi
 function tags(s)
   s.prmpt = awf.widget.prompt()
   s.bar4 = wib({
-      width = 320,
+      width = 300,
       height = 25,
       position = 'bottom',
       ontop = false,
@@ -32,8 +32,7 @@ function tags(s)
     screen = s,
     filter = awf.widget.taglist.filter.all,
     style = {
-      shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(3)) end,
-      spacing = 5,
+      spacing = 2,
       font = "RecMono Nerd Font Bold 10"
     },
 		widget_template = {
@@ -55,8 +54,8 @@ function tags(s)
     expand = "none",
     nil,
     {
-      layout = wib.layout.fixed.horizontal,
-      s.taglist
+				layout = wib.layout.fixed.horizontal,
+				s.taglist,
     },
     nil
   }
