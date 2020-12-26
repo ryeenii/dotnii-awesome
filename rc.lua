@@ -31,7 +31,7 @@ local fct = require('functions')
 btf.init(uvrs.themeDir .. "theme.lua")
 nty.connect_signal("request::display_error", startup_error)
 client.connect_signal("manage", sig_manage)
-spw('picom')
+spw('picom --experimental-backend --backend=glx')
 -- section 3     ||
 -- load the rest ||
 -- ______________//
