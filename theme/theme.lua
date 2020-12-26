@@ -14,13 +14,13 @@ local thmAssets = require("beautiful.theme_assets")
 local xrsrc = require("beautiful.xresources")
 local xrdb = xrsrc.get_current_theme()
 local dpi = xrsrc.apply_dpi
-local vars = require("vars")
+local uvrs = require('config.usercfg')
 local grs = require("gears")
 local theme = {}
 
-theme.font          = "Hyperspace Race Bold 10" or "Sans 10"
-
-theme.bg_normal     = xrdb.background or "#111111"
+theme.font          = "Recursive Sans Linear Static 10" or "Sans 10"
+theme.alt_font		= "Recursive Sans Linear Static Bold 11" or "Sans 10"
+theme.bg_normal     = xrdb.background .. "E0" or "#111111"
 theme.bg_focus      = xrdb.color1 or "#d2504e"
 theme.bg_urgent     = xrdb.color1 or "#ff0000"
 theme.bg_minimize   = xrdb.color3 or "#444444"
@@ -38,7 +38,7 @@ theme.border_normal = theme.bg_minimize
 theme.border_focus  = theme.bg_focus or "#ffffff"
 theme.border_marked = theme.bg_minimize
 
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = thmAssets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -53,15 +53,18 @@ theme.notification_max_width = dpi(450)
 theme.notification_max_height = dpi(75)
 theme.notification_icon_size = dpi(24)
 theme.notification_shape = function(c, w, h) grs.shape.rounded_rect(c, w, h, dpi(5)) end
-theme.menu_submenu_icon = vars.iconDir .. "reenii.png"
+
+theme.menu_submenu_icon = uvrs.iconDir .. "reenii.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 theme.menu_border_color = theme.border_normal
 theme.menu_border_width = theme.border_width
 
-theme.wallpaper = vars.picsDir .. "Wallpapers/monokai.png"
+theme.taglist_disable_icon = true 
 
--- TODO: work on the icons!
+theme.wallpaper = uvrs.picsDir .. "Wallpapers/monokai.png"
+
+-- TODO: work on the layout icons!
 -- there's so many layouts to do...
 -- but they're gonna be fun for sure!
 

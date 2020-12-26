@@ -18,7 +18,7 @@ local layouts = {
 
 local function perscreen_connect(s)
   set_wallpaper()
-  awf.tag({ "web", "chat", "zen", "code", "game", "term" }, s, layouts)
+  awf.tag({ "爵 web", " chat", " code", " zen", " term" }, s, layouts)
 end
 
 awf.screen.connect_for_each_screen(perscreen_connect)

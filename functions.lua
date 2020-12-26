@@ -39,24 +39,13 @@ function sig_manage(c)
     c:raise()
 end
 
-function colorswap(e)
+function colorswap()
   local xrc = require('beautiful.xresources')
   local xdb = xrc.get_current_theme()
-  if not e.cs then
-    e.cs = xdb.color3
-  else
-    if e.cs == xdb.color3 then
-      e.cs = xdb.color2
-    else if e.cs == xdb.color2 then
-      e.cs = xdb.color4
-    else if e.cs == xdb.color4 then
-      e.cs = xdb.color5
-    else if e.cs == xdb.color5 then
-      e.cs = xdb.color3
-    end
-    end
-    end
-    end 
+  if not cs then
+    cs = xdb.color3
+	else
+		cs = xdb['color' .. math.random(1, 6)]
   end
-  return e.cs
+  return cs
 end

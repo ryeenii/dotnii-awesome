@@ -8,16 +8,10 @@ local grs = require('gears')
 local btf = require('beautiful')
 local xrc = require('beautiful.xresources')
 local wib = require('wibox')
-local vrs = require('vars')
+local uvrs = require('config.usercfg')
 local dpi = xrc.apply_dpi
 
 function pfp(s)
-  local btn = grs.table.join(
-    awf.button({  }, 1, function()
-        local srr = require('widgets.sourire')
-        awf.screen.connect_for_each_screen(sourire)
-    end)
-  )
   s.prmpt = awf.widget.prompt()
   s.bar3 = wib ({
     width = 25,
@@ -32,7 +26,7 @@ function pfp(s)
   })
   awf.placement.top_right(s.bar3, {margins = { top = dpi(5), right = dpi(8) }})
   s.pfp = wib.widget {
-      image = vrs.pfpDir,
+      image = uvrs.pfpDir,
       resize = true,
       clip_shape = function(c, w, h) grs.shape.rounded_rect(c, w , h, dpi(2)) end,
       widget = wib.widget.imagebox
@@ -43,7 +37,12 @@ function pfp(s)
     nil,
     {
       layout = wib.layout.fixed.horizontal,
-      buttons = btn,
+      buttons = {
+        awf.button({  }, 1, function()
+            local srr = require('widgets.sourire')
+            awf.screen.connect_for_each_screen(sourire)
+        end)
+      },
       s.pfp
     },
     nil

@@ -15,11 +15,12 @@
 -- default configs and libraries ||
 -- ______________________________//
 
--- easy-to-access variables
-local vrs = require('vars')
+-- we load only the user configs because they are by default the standard configs, which can be afterwards changed by your likings.
+local uvrs = require('config.usercfg')
 -- default awesome libraries
 local nty = require('naughty')
 local btf = require('beautiful')
+local spw = require('awful.spawn')
 -- helpful functions
 local fct = require('functions')
 
@@ -27,10 +28,10 @@ local fct = require('functions')
 -- signals   ||
 -- __________//
 
-btf.init(vrs.themeDir .. "theme.lua")
+btf.init(uvrs.themeDir .. "theme.lua")
 nty.connect_signal("request::display_error", startup_error)
 client.connect_signal("manage", sig_manage)
-
+spw('picom --experimental-backend --backend=glx')
 -- section 3     ||
 -- load the rest ||
 -- ______________//

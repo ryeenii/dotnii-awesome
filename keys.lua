@@ -9,8 +9,8 @@
 -- main libraries
 local awf = require('awful')
 local grs = require('gears')
-local swt = require('awesome-switcher')
-local vrs = require('vars')
+local swt = require('lib.awesome-switcher')
+local uvrs = require('config.usercfg')
 -- since most of the keys are case sensitive, let's lowercase them down for easy usage
 local modKey = "Mod4"
 local altKey = "Mod1"
@@ -23,20 +23,20 @@ local term = "st"
 -- || \_/  __ || are on this section.
 -- ||     /_/ ||
 -- \\_________//
-glkeys = grs.table.join (
-  awf.key({modKey, "Shift"}, "Up",
+awf.keyboard.append_global_keybindings({
+  awf.key({modKey, "Control"}, "Up",
     function () awf.client.swap.bydirection("up") end,
     {description = "swap positions according to direction given [up]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Left",
+  awf.key({modKey, "Control"}, "Left",
     function() awf.client.swap.bydirection("left") end,
     {description = "swap positions according to direction given [left]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Down",
+  awf.key({modKey, "Control"}, "Down",
     function() awf.client.swap.bydirection("down") end,
     {description = "swap positions according to direction given [down]", group = "window"}
   ),
-  awf.key({modKey, "Shift"}, "Right",
+  awf.key({modKey, "Control"}, "Right",
     function() awf.client.swap.bydirection("right") end,
     {description = "swap positions according to direction given [right]", group = "window"}
   ),
@@ -49,15 +49,15 @@ glkeys = grs.table.join (
     {description = "open a terminal", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "d",
-    function() awf.spawn("sh " .. vrs.rofi)  end,
+    function() awf.spawn("sh " .. uvrs.rofi)  end,
     {description = "run prompt (xdg mode)", group = "launcher"}
   ),
   awf.key({modKey}, "d",
-    function() awf.spawn("sh " .. vrs.rofiRun) end,
+    function() awf.spawn("sh " .. uvrs.rofiRun) end,
     {description = "run prompt", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "e",
-    function() awf.spawn("sh " .. vrs.rofiEmoji) end,
+    function() awf.spawn("sh " .. uvrs.rofiRun) end,
     {description = "emoji prompt", group = "launcher"}
   ),
   awf.key({modKey, "Shift"}, "r",
@@ -69,8 +69,12 @@ glkeys = grs.table.join (
     {description = "change layout type", group = "layout"}
   ),
   awf.key({ctrl}, "Print",
-    function() awf.spawn("sh " .. vrs.scr) end,
+    function() awf.spawn("sh " .. uvrs.scr) end,
     {description = "take a screenshot", group = "launcher"}
+  ),
+  awf.key({ctrl, "Shift"}, "Print",
+    function() awf.spawn("sh " .. uvrs.scr .. " -d") end,
+    {description = "take a delayed screenshot", group = "launcher"}
   ),
   awf.key({modKey}, "e",
     function()
@@ -84,16 +88,24 @@ glkeys = grs.table.join (
     {description = "toggle sourire menu", group = "sourire"}
   ),
   awf.key({modKey}, "Escape",
-  	function() awesome.quit() end,
+  	function()
+      local pwr = require('widgets.power-options')
+      if not menu then
+        awf.screen.connect_for_each_screen(pwrRev)
+      else
+        awf.screen.connect_for_each_screen(pwrFad)
+      end
+    end,
 	{description = "quit awesome", group = "seeya!"})
-)
+})
 --  ___________
 -- /           \
 -- |           | client/window keys. 
 -- |           | this is where all the extravaganza
 -- |           | with your programs goes!
 -- \__________/
-clkeys = grs.table.join(
+client.connect_signal("request::default_keybindings", function() 
+	awf.keyboard.append_client_keybindings({
 		awf.key({modKey, "Shift"}, "q",
 				function(c) c:kill() end,
         {description = "close client", group = "client"}
@@ -109,20 +121,85 @@ clkeys = grs.table.join(
       end,
       {description = "toggle client maximized", group="client"}
     ),
-	awf.key({modKey}, "t", 
-		function (c) 
-				c.ontop = not c.ontop 
-		end,
-    {description = "toggle client on top", group="client"}
+		awf.key({modKey}, "t", 
+				function (c) 
+						c.ontop = not c.ontop 
+				end,
+				{description = "toggle client on top", group="client"}
+		),
+		awf.key({modKey}, "Left",
+				function (c)
+						if c.floating then
+								c:relative_move(-10, 0, 0, 0)
+						end
+				end,
+				{description = "move floating client to the left by 10px", group="client"}
+		),
+		awf.key({modKey}, "Right",
+				function (c)
+						if c.floating then
+								c:relative_move(10, 0, 0, 0)
+						end
+				end,
+				{description = "move floating client to the right by 10px", group="client"}
+		),
+		awf.key({modKey}, "Up",
+				function (c)
+						if c.floating then
+								c:relative_move(0, -10, 0, 0)
+						end
+				end,
+				{description = "move floating client to the top by 10px", group="client"}
+		),
+		awf.key({modKey}, "Down",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 10, 0, 0)
+						end
+				end,
+				{description = "move floating client to the bottom by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Left",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, -10, 0)
+						end
+				end,
+				{description = "resize floating client to the left by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Right",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 10, 0)
+						end
+				end,
+				{description = "resize floating client to the right by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Up",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 0, -10)
+						end
+				end,
+				{description = "resize floating client to the top by 10px", group="client"}
+		),
+		awf.key({modKey, "Shift"}, "Down",
+				function (c)
+						if c.floating then
+								c:relative_move(0, 0, 0, 10)
+						end
+				end,
+				{description = "resize floating client to the bottom by 10px", group="client"}
 		)
-)
---   ______________
---  /              \
+	})
+end)
+--  _______________
+-- /               \
 -- | [1] 2 3 4 5 6 | tag/workspace buttons!
 -- \_______________/
 --
 for i = 1, 9 do
-  glkeys = grs.table.join(glkeys,
+  awf.keyboard.append_global_keybindings({
                           awf.key({modKey}, "#" .. i + 9,
                             function()
                               local scr = awf.screen.focused()
@@ -144,7 +221,7 @@ for i = 1, 9 do
                             end,
                             {description = "move focused client to tag #"..i, group = "tag"}
                           )
-  )
+	})
 end
   --   ________
   --  /___ ___ \
@@ -153,24 +230,28 @@ end
   -- |         | mouse/client buttons!
   -- |         | they are really simple, but at the same time really efficient.
   -- \________/
-clbuttons = grs.table.join(
-  awf.button({ }, 1, function (c)
-      if not c then return end client.focus = c; c:raise()
-  end), 
-  awf.button({ }, 3, function()
-      local srr = require('widgets.sourire')
-      if not menu then
-        return
-      else
-        awf.screen.connect_for_each_screen(rtrn)
-      end
-  end),
-    awf.button({ modKey }, 1, awf.mouse.client.move),
-    awf.button({ modKey }, 3, awf.mouse.client.resize)
-)
+client.connect_signal("request::default_mousebindings", function()
+	awf.mouse.append_client_mousebindings({
+		awf.button({ }, 1, function (c)
+			c:activate { context = "mouse_click" }
+		end), 
+		awf.button({ modKey }, 1, function(c)
+			c:activate { context = "mouse_click", action = "mouse_move" }
+		end),
+		awf.button({ modKey }, 3, function(c)
+			c:activate { context = "mouse_click", action = "mouse_resize" }
+		end),
+    awf.button({ modKey, "Shift" }, 3, function() awf.spawn('bash ' .. uvrs.rofi .. ' ' .. mouse.coords().x .. ' ' .. mouse.coords().y) end),
+    awf.button({ }, 3, function()
+        local srr = require('widgets.sourire')
+        if not menu then
+          return
+        else
+          awf.screen.connect_for_each_screen(rtrn)
+        end
+    end)
+	})
+end)
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
-  -- in order to load the keys *at all*, this small root.keys classification is necessary
-root.keys(glkeys)
-root.buttons(clbuttons)
