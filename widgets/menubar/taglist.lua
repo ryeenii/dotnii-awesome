@@ -13,7 +13,7 @@ local dpi = xrc.apply_dpi
 function tags(s)
   s.prmpt = awf.widget.prompt()
   s.bar4 = wib({
-      width = 290,
+      width = 283,
       height = 25,
       position = 'bottom',
       ontop = false,
@@ -51,9 +51,9 @@ function tags(s)
 		}
   } 
   s.margin = wib.widget({
-      top = 3,
-      bottom = 3,
-      left = 5,
+      top = 2,
+      bottom = 2,
+      left = 2,
       s.taglist,
       widget = wib.container.margin
   })
