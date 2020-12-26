@@ -38,7 +38,7 @@ theme.border_normal = theme.bg_minimize
 theme.border_focus  = theme.bg_focus or "#ffffff"
 theme.border_marked = theme.bg_minimize
 
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = thmAssets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -59,6 +59,8 @@ theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 theme.menu_border_color = theme.border_normal
 theme.menu_border_width = theme.border_width
+
+theme.taglist_disable_icon = true 
 
 theme.wallpaper = uvrs.picsDir .. "Wallpapers/monokai.png"
 
